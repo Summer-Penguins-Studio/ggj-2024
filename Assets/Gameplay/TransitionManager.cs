@@ -7,18 +7,26 @@ public class TransitionManager : MonoBehaviour
 {
     [SerializeField] private Image m_PanelImage;
 
-    [SerializeField] private VoidEventChannel m_GradualBlackout;
-    [SerializeField] private VoidEventChannel m_Show;
+    [SerializeField] private VoidEventChannel m_GradualBlackoutIn;
+    [SerializeField] private VoidEventChannel m_GradualBlackoutOut;
+    [SerializeField] private VoidEventChannel m_InstantIn;
+    [SerializeField] private VoidEventChannel m_InstantOut;
 
     [SerializeField] private float m_GradualTime;
 
     private void OnEnable()
     {
-        if (m_GradualBlackout != null)
-            m_GradualBlackout.OnEventRaised += gradualBlackoutCaller;
+        if (m_GradualBlackoutIn != null)
+            m_GradualBlackoutIn.OnEventRaised += blackoutIn;
 
-        if (m_Show != null)
-            m_Show.OnEventRaised += show;
+        if (m_GradualBlackoutOut != null)
+            m_GradualBlackoutOut.OnEventRaised += blackoutOut;
+
+        if (m_InstantIn != null)
+            m_InstantIn.OnEventRaised += instantIn;
+
+        if (m_InstantOut != null)
+            m_InstantOut.OnEventRaised += instantOut;
     }
 
     // Start is called before the first frame update
@@ -33,32 +41,35 @@ public class TransitionManager : MonoBehaviour
         
     }
 
-    IEnumerator gradualBlackout()
+    IEnumerator Blackout(float end, bool add)
     {
         float timeElapsed = 0;
         Color initialColor = m_PanelImage.color;
-        Color endColor = new Color(initialColor.r, initialColor.g, initialColor.b, 1);
+        Color endColor = new Color(initialColor.r, initialColor.g, initialColor.b, end);
         while (timeElapsed < m_GradualTime)
         {
             m_PanelImage.color = Color.Lerp(initialColor, endColor, timeElapsed / m_GradualTime);
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.deltaTime * (add ? 1 : -1);
             yield return null;
         }
         m_PanelImage.color = endColor;
     }
 
-    private void gradualBlackoutCaller()
+    private void blackoutIn()
     {
-        StartCoroutine(gradualBlackout());
+        StartCoroutine(Blackout(1, true));
+    }
+    private void blackoutOut()
+    {
+        StartCoroutine(Blackout(0, false));
     }
 
-    private void blackout()
+    private void instantIn()
     {
         Color color = m_PanelImage.color;
         m_PanelImage.color = new Color(color.r, color.g, color.b, 1);
     }
-
-    private void show()
+    private void instantOut()
     {
         Color color = m_PanelImage.color;
         m_PanelImage.color = new Color(color.r, color.g, color.b, 0);
