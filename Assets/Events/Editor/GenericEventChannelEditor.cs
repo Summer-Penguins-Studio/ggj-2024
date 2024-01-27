@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 using System;
 
 [CustomEditor(typeof(GenericEventChannel<>), true)]
-public abstract class GenericEventChannelSOEditor<T> : Editor
+public abstract class GenericEventChannelEditor<T> : Editor
 {
     private GenericEventChannel<T> m_EventChannel;
 
