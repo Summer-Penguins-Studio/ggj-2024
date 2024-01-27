@@ -7,7 +7,7 @@ public class VoidEventChannelListener : MonoBehaviour
 {
     [Header("Listen to Event Channels")]
     [Tooltip("The signal to listen for")]
-    [SerializeField] private VoidEventChannelSO m_EventChannel;
+    [SerializeField] private VoidEventChannel m_EventChannel;
     [Space]
     [Tooltip("Responds to receiving signal from Event Channel")]
     [SerializeField] private UnityEvent m_Response;

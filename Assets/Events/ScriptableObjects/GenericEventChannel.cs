@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class GenericEventChannelSO<T> : ScriptableObject
+public abstract class GenericEventChannel<T> : ScriptableObject
 {
     [Tooltip("The action to perform; Listeners subscribe to this UnityAction")]
     public UnityAction<T> OnEventRaised;
