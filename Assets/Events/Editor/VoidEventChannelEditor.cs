@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System;
 
-[CustomEditor(typeof(VoidEventChannelSO))]
+[CustomEditor(typeof(VoidEventChannel))]
 public class VoidEventChannelSOEditor : Editor
 {
     // Reference to the original event channel (to set up button callback)
-    private VoidEventChannelSO m_EventChannel;
+    private VoidEventChannel m_EventChannel;
 
     // Label and counter for items in the list
     private Label m_ListenersLabel;
@@ -20,7 +20,7 @@ public class VoidEventChannelSOEditor : Editor
     private void OnEnable()
     {
         if (m_EventChannel == null)
-            m_EventChannel = target as VoidEventChannelSO;
+            m_EventChannel = target as VoidEventChannel;
     }
 
     public override VisualElement CreateInspectorGUI()

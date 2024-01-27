@@ -6,10 +6,10 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System;
 
-[CustomEditor(typeof(GenericEventChannelSO<>), true)]
+[CustomEditor(typeof(GenericEventChannel<>), true)]
 public abstract class GenericEventChannelSOEditor<T> : Editor
 {
-    private GenericEventChannelSO<T> m_EventChannel;
+    private GenericEventChannel<T> m_EventChannel;
 
     // Label and counter for items in the list
     private Label m_ListenersLabel;
@@ -19,7 +19,7 @@ public abstract class GenericEventChannelSOEditor<T> : Editor
     private void OnEnable()
     {
         if (m_EventChannel == null)
-            m_EventChannel = target as GenericEventChannelSO<T>;
+            m_EventChannel = target as GenericEventChannel<T>;
     }
 
     public override VisualElement CreateInspectorGUI()
