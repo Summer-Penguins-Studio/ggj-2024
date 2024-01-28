@@ -18,6 +18,8 @@ public class Car : MonoBehaviour
     [SerializeField] private Vector3 m_DirectionVector;
     [SerializeField] GameObject transporterManager;
 
+    [SerializeField] private GameObject playerCollider;
+
 
     private void OnEnable()
     {
@@ -92,6 +94,7 @@ public class Car : MonoBehaviour
     {
         if (collision.CompareTag("Player")){
             transporterManager.GetComponent<TransporterManager>().ToHospital();
+            playerCollider.GetComponent<PlayerCollider>().PlayDeadByCar();
         }
     }
 }
