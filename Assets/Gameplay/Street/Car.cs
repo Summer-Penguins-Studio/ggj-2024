@@ -6,13 +6,15 @@ public class Car : MonoBehaviour
 {
     [SerializeField] private VoidEventChannel m_RedLight;
     [SerializeField] private VoidEventChannel m_GreenLight;
+    [SerializeField] private VoidEventChannel m_CarHit;
 
     [SerializeField] private bool m_IsGreen;
     [SerializeField] private bool m_IsMoving;
     [SerializeField] private float m_Speed;
     [SerializeField] private float m_InitX;
     [SerializeField] private int m_StopX;
-    [SerializeField] private float m_RayDistance;
+    [SerializeField] private float m_CarRayDistance;
+    [SerializeField] private float m_PlayerRayDistance;
     [SerializeField] private Vector3 m_DirectionVector;
 
     private void OnEnable()
@@ -35,12 +37,12 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.left, Color.red, m_RayDistance);
+        PlayerCheck();
 
+        Debug.DrawRay(transform.position, Vector3.left, Color.red, m_CarRayDistance);
+        float speed;
 
-        float speed = 0;
-
-        if (FrontCheck())
+        if (CarCheck())
         {
             speed = 0;
         } 
@@ -64,16 +66,32 @@ public class Car : MonoBehaviour
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
-    private bool FrontCheck()
+    private bool CarCheck()
     {
         RaycastHit hit;
 
-        if (!Physics.Raycast(transform.position, transform.right, out hit, m_RayDistance))
+        if (!Physics.Raycast(transform.position, transform.right, out hit, m_CarRayDistance))
         {
             return false;
         }
 
         return (hit.transform.CompareTag("Car"));
+    }
+    private void PlayerCheck()
+    {
+        RaycastHit hit;
+
+        if (!Physics.Raycast(transform.position, transform.right, out hit, m_PlayerRayDistance))
+        {
+            return;
+        }
+
+        Debug.Log(hit.rigidbody.gameObject.name);
+
+        if (hit.transform.CompareTag("Player"))
+        {
+            m_CarHit.RaiseEvent();
+        }
     }
 
     private void greenLight()
