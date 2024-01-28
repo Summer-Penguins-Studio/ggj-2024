@@ -218,6 +218,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &25364693
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25364688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3b1148de10f87124cb558ca9e1430f3c, type: 3}
+  m_Controller: {fileID: 9100000, guid: 8fc2f9820de7c824fb0fd1e9c28c7314, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &25571380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6791676302069003376, guid: 09ef52733e88bce469311408ee0dba9a, type: 3}
@@ -1558,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 89501917142140893, guid: 74e831016c8cb0344bfd6b4189827e7b, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 97698921321942646, guid: 74e831016c8cb0344bfd6b4189827e7b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5602,6 +5623,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b1148de10f87124cb558ca9e1430f3c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 25364689}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b1148de10f87124cb558ca9e1430f3c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 25364693}
   m_SourcePrefab: {fileID: 100100000, guid: 3b1148de10f87124cb558ca9e1430f3c, type: 3}
 --- !u!114 &1884771083 stripped
 MonoBehaviour:
@@ -5779,7 +5803,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
