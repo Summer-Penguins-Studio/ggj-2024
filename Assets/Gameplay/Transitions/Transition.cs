@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum Transition
 {
-    BLACKOUT_IN, BLACKOUT_OUT, INSTANT_IN, INSTANT_OUT
+    BLACKOUT_IN, BLACKOUT_OUT, INSTANT_IN, INSTANT_OUT, NONE
 }

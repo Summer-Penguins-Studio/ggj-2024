@@ -7,6 +7,7 @@ public class ElevatorManager : MonoBehaviour
     [SerializeField] private int m_ActualFloor;
     [SerializeField] private GameObject m_LeftDoor;
     [SerializeField] private GameObject m_RightDoor;
+    [SerializeField] private GameObject m_TransporterManager;
 
     [SerializeField] private float m_OpeningTime;
     private bool m_IsClosed;
@@ -73,27 +74,27 @@ public class ElevatorManager : MonoBehaviour
     }
 
     IEnumerator MoveElevator(int floor)
-    {
+    { 
+        m_IsMoving = false;
+        m_ActualFloor = floor;
+
         while (m_IsOpening)
             yield return null;
 
         m_IsMoving = true;
-        float elapsedTime = 0f;
-        Vector3 startPosition = transform.position;
-        Vector3 targetPosition = new Vector3 (startPosition.x, (3.5f * floor), startPosition.z);
 
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-        Vector3 pStartPosition = player.position;
-        Vector3 pEndPosition = new Vector3(player.position.x, (3.5f * floor), player.position.z);
-        while (elapsedTime < m_OpeningTime)
+        switch(floor)
         {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / m_OpeningTime);
-            player.position = Vector3.Lerp(pStartPosition, pEndPosition, elapsedTime / m_OpeningTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            case 0:
+                m_TransporterManager.GetComponent<TransporterManager>().ToBasePlant();
+                break;
+            case 1:
+                m_TransporterManager.GetComponent<TransporterManager>().To1stFloor();
+                break;
+            case 2:
+                m_TransporterManager.GetComponent<TransporterManager>().To2ndFloor();
+                break;
         }
-        transform.position = targetPosition;
-        player.position = pEndPosition;
         m_IsMoving = false;
         m_ActualFloor = floor;
         ToggleDoors();
@@ -103,7 +104,7 @@ public class ElevatorManager : MonoBehaviour
     {
         float elapsedTime = 0f;
         Vector3 startPosition = door.transform.position;
-        Vector3 targetPosition = new Vector3(targetX, door.transform.position.y, door.transform.position.z);
+        Vector3 targetPosition = new Vector3(door.transform.position.x, door.transform.position.y, door.transform.position.z + targetX);
         while (elapsedTime < m_OpeningTime)
         {
             door.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / m_OpeningTime);
@@ -122,8 +123,8 @@ public class ElevatorManager : MonoBehaviour
         m_IsOpening = !m_IsOpening;
         if (m_IsClosed)
         {
-            StartCoroutine(MoveDoor(m_LeftDoor, -1.5f));
-            StartCoroutine(MoveDoor(m_RightDoor, 1.5f));
+            StartCoroutine(MoveDoor(m_LeftDoor, -0.5f));
+            StartCoroutine(MoveDoor(m_RightDoor, 0.5f));
             m_IsClosed = false;
         }
         else

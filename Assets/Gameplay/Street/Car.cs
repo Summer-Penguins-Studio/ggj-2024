@@ -37,8 +37,6 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        PlayerCheck();
-
         Debug.DrawRay(transform.position, Vector3.left, Color.red, m_CarRayDistance);
         float speed;
 
@@ -76,22 +74,6 @@ public class Car : MonoBehaviour
         }
 
         return (hit.transform.CompareTag("Car"));
-    }
-    private void PlayerCheck()
-    {
-        RaycastHit hit;
-
-        if (!Physics.Raycast(transform.position, transform.right, out hit, m_PlayerRayDistance))
-        {
-            return;
-        }
-
-        Debug.Log(hit.rigidbody.gameObject.name);
-
-        if (hit.transform.CompareTag("Player"))
-        {
-            m_CarHit.RaiseEvent();
-        }
     }
 
     private void greenLight()
