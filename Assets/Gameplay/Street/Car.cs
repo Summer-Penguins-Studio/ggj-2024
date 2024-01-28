@@ -85,4 +85,9 @@ public class Car : MonoBehaviour
     {
         m_IsGreen = false;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
 }
