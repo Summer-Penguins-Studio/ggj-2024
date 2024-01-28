@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
     [SerializeField] private Transform m_Player;
+    [SerializeField] private GameObject playerCollider;
     [SerializeField] GameObject transporterManager;
 
 
@@ -14,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+        //m_Agent.enabled = false;
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             transporterManager.GetComponent<TransporterManager>().ToHospital();
+            playerCollider.GetComponent<PlayerCollider>().PlayDeadByEnemy();
         }
     }
 }

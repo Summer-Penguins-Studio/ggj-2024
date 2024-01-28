@@ -12,6 +12,7 @@ public class AudioSpot : MonoBehaviour
     void Start()
     {
         AudioSource audioSource = GetComponent<AudioSource>();
+        m_IsPlayed = false;
     }
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ public class AudioSpot : MonoBehaviour
     {
         yield return new WaitForSeconds(m_Delay);
         audioSource.Play();
+        m_IsPlayed = true;
     }
 
     private void OnTriggerEnter(Collider other)
