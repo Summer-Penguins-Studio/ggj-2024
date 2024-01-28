@@ -97,7 +97,7 @@ public class ElevatorManager : MonoBehaviour
         }
         m_IsMoving = false;
         m_ActualFloor = floor;
-        ToggleDoors();
+        //ToggleDoors();
     }
 
     IEnumerator MoveDoor(GameObject door, float targetX)
@@ -105,6 +105,18 @@ public class ElevatorManager : MonoBehaviour
         float elapsedTime = 0f;
         Vector3 startPosition = door.transform.position;
         Vector3 targetPosition = new Vector3(door.transform.position.x, door.transform.position.y, door.transform.position.z + targetX);
+        while (elapsedTime < m_OpeningTime)
+        {
+            door.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / m_OpeningTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        door.transform.position = targetPosition;
+        m_IsOpening = false;
+        yield return new WaitForSeconds(m_OpeningTime);
+        elapsedTime = 0f;
+        startPosition = door.transform.position;
+        targetPosition = new Vector3(door.transform.position.x, door.transform.position.y, door.transform.position.z - targetX);
         while (elapsedTime < m_OpeningTime)
         {
             door.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / m_OpeningTime);
@@ -123,14 +135,14 @@ public class ElevatorManager : MonoBehaviour
         m_IsOpening = !m_IsOpening;
         if (m_IsClosed)
         {
-            StartCoroutine(MoveDoor(m_LeftDoor, -0.5f));
-            StartCoroutine(MoveDoor(m_RightDoor, 0.5f));
+            StartCoroutine(MoveDoor(m_LeftDoor, -1f));
+            StartCoroutine(MoveDoor(m_RightDoor, 1f));
             m_IsClosed = false;
         }
         else
         {
-            StartCoroutine(MoveDoor(m_LeftDoor, -0.5f));
-            StartCoroutine(MoveDoor(m_RightDoor, 0.5f));
+            StartCoroutine(MoveDoor(m_LeftDoor, -1f));
+            StartCoroutine(MoveDoor(m_RightDoor, 1f));
             m_IsClosed = true;
         }
     }
