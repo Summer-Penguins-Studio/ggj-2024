@@ -28,6 +28,21 @@ public class TransitionManager : MonoBehaviour
         if (m_InstantOut != null)
             m_InstantOut.OnEventRaised += instantOut;
     }
+    private void OnDisable()
+    {
+        if (m_GradualBlackoutIn != null)
+            m_GradualBlackoutIn.OnEventRaised -= blackoutIn;
+
+        if (m_GradualBlackoutOut != null)
+            m_GradualBlackoutOut.OnEventRaised -= blackoutOut;
+
+        if (m_InstantIn != null)
+            m_InstantIn.OnEventRaised -= instantIn;
+
+        if (m_InstantOut != null)
+            m_InstantOut.OnEventRaised -= instantOut;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,27 +56,32 @@ public class TransitionManager : MonoBehaviour
         
     }
 
-    IEnumerator Blackout(float end, bool add)
+    IEnumerator Blackout(bool fadein)
     {
-        float timeElapsed = 0;
+        float timeElapsed = fadein ? 0 : m_GradualTime;
         Color initialColor = m_PanelImage.color;
-        Color endColor = new Color(initialColor.r, initialColor.g, initialColor.b, end);
+        Color endColor = new Color(initialColor.r, initialColor.g, initialColor.b, (fadein ? 1 : 0));
+
         while (timeElapsed < m_GradualTime)
         {
             m_PanelImage.color = Color.Lerp(initialColor, endColor, timeElapsed / m_GradualTime);
-            timeElapsed += Time.deltaTime * (add ? 1 : -1);
+            if (fadein)
+                timeElapsed += Time.deltaTime;
+            else
+                timeElapsed -= Time.deltaTime;
             yield return null;
         }
+
         m_PanelImage.color = endColor;
     }
 
     private void blackoutIn()
     {
-        StartCoroutine(Blackout(1, true));
+        StartCoroutine(Blackout(true));
     }
     private void blackoutOut()
     {
-        StartCoroutine(Blackout(0, false));
+        StartCoroutine(Blackout(false));
     }
 
     private void instantIn()
