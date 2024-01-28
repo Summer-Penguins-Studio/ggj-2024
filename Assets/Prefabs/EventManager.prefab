@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6791676302069003376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2623324173364774828}
+  - component: {fileID: 1553482055526876167}
+  - component: {fileID: 9203166762131073044}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2623324173364774828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791676302069003376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1553482055526876167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791676302069003376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b612cb88a5a012a40bf4fb8754282ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelImage: {fileID: 0}
+  m_GradualBlackoutIn: {fileID: 11400000, guid: 83c33784dae73b04e98dc3d7f36413e3, type: 2}
+  m_GradualBlackoutOut: {fileID: 11400000, guid: 6f578afd8f33be84d84e3cc2aa28870f, type: 2}
+  m_InstantIn: {fileID: 11400000, guid: 7f0785cfa85bc5741b61911e2079f889, type: 2}
+  m_InstantOut: {fileID: 11400000, guid: 1f6db66ae87af2a47a793239e85bb531, type: 2}
+  m_CameraShake: {fileID: 11400000, guid: 4e19b1f5fe089c948983a422f0c978ef, type: 2}
+  m_GradualBlackoutTime: 1.5
+  m_Camera: {fileID: 0}
+--- !u!114 &9203166762131073044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791676302069003376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52242b569bd0a6347bc6d00b70b5f9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Player: {fileID: 0}
