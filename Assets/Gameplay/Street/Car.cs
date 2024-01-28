@@ -16,6 +16,8 @@ public class Car : MonoBehaviour
     [SerializeField] private float m_CarRayDistance;
     [SerializeField] private float m_PlayerRayDistance;
     [SerializeField] private Vector3 m_DirectionVector;
+    [SerializeField] GameObject transporterManager;
+
 
     private void OnEnable()
     {
@@ -86,8 +88,10 @@ public class Car : MonoBehaviour
         m_IsGreen = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.name);
+        if (collision.CompareTag("Player")){
+            transporterManager.GetComponent<TransporterManager>().ToHospital();
+        }
     }
 }

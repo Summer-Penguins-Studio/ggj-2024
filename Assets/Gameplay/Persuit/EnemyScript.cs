@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
     [SerializeField] private Transform m_Player;
+    [SerializeField] GameObject transporterManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,5 +20,12 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         m_Agent.destination = m_Player.position;
+    }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            transporterManager.GetComponent<TransporterManager>().ToHospital();
+        }
     }
 }
