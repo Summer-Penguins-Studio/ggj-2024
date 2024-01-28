@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 62b28df6c135e5b46ad3ecf62c8173e9
+guid: 3b1148de10f87124cb558ca9e1430f3c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,6 +31,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
+<<<<<<< HEAD
     clipAnimations:
     - serializedVersion: 16
       name: Armature|Armature|mixamo.com|Layer0
