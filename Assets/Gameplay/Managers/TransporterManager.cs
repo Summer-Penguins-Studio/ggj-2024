@@ -8,6 +8,9 @@ public class TransporterManager : MonoBehaviour
     [SerializeField] private GameObject m_Player;
 
     [SerializeField] private Vector3 m_Hospital;
+    [SerializeField] private Vector3 m_BasePlant;
+    [SerializeField] private Vector3 m_1stFloor;
+    [SerializeField] private Vector3 m_2ndFloor;
 
     [SerializeField] private VoidEventChannel m_CarHit;
 
@@ -42,6 +45,21 @@ public class TransporterManager : MonoBehaviour
         StartCoroutine(Transport(m_Hospital, Transition.INSTANT_IN, Transition.BLACKOUT_OUT));
     }
 
+    public void To2ndFloor()
+    {
+        StartCoroutine(Transport(m_2ndFloor, Transition.BLACKOUT_IN, Transition.BLACKOUT_OUT));
+    }
+
+    public void To1stFloor()
+    {
+        StartCoroutine(Transport(m_1stFloor, Transition.BLACKOUT_IN, Transition.BLACKOUT_OUT));
+    }
+
+    public void ToBasePlant()
+    {
+        StartCoroutine(Transport(m_BasePlant, Transition.BLACKOUT_IN, Transition.BLACKOUT_OUT));
+    }
+
     private IEnumerator Transport(Vector3 position, Transition initial, Transition final)
     {
         m_Player.GetComponent<FirstPersonController>().enabled = false;
@@ -50,19 +68,21 @@ public class TransporterManager : MonoBehaviour
         {
             case Transition.BLACKOUT_IN:
                 m_CameraManager.blackoutIn();
-                yield return new WaitForSeconds(90);
+                yield return new WaitForSeconds(1.5f);
                 break;
             case Transition.BLACKOUT_OUT:
                 m_CameraManager.blackoutOut();
-                yield return new WaitForSeconds(90);
+                yield return new WaitForSeconds(1.5f);
                 break;
             case Transition.INSTANT_IN:
                 m_CameraManager.instantIn();
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1f);
                 break;
             case Transition.INSTANT_OUT:
                 m_CameraManager.instantOut();
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1f);
+                break;
+            case Transition.NONE:
                 break;
         }
 
@@ -72,19 +92,21 @@ public class TransporterManager : MonoBehaviour
         {
             case Transition.BLACKOUT_IN:
                 m_CameraManager.blackoutIn();
-                yield return new WaitForSeconds(90);
+                yield return new WaitForSeconds(1.5f);
                 break;
             case Transition.BLACKOUT_OUT:
                 m_CameraManager.blackoutOut();
-                yield return new WaitForSeconds(90);
+                yield return new WaitForSeconds(1.5f);
                 break;
             case Transition.INSTANT_IN:
                 m_CameraManager.instantIn();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1f);
                 break;
             case Transition.INSTANT_OUT:
                 m_CameraManager.instantOut();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1f);
+                break;
+            case Transition.NONE:
                 break;
         }
 

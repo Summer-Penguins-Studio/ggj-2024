@@ -155,6 +155,7 @@ MonoBehaviour:
   m_ActualFloor: 0
   m_LeftDoor: {fileID: 3536838645482117617}
   m_RightDoor: {fileID: 8651938315572797335}
+  m_TransporterManager: {fileID: 0}
   m_OpeningTime: 2
 --- !u!65 &6688804044052893337
 BoxCollider:
@@ -175,8 +176,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0.1, z: 1}
+  m_Size: {x: 2, y: 1.0766315, z: 2}
+  m_Center: {x: 0, y: 0.56168425, z: 1}
 --- !u!1 &1077703942904289568
 GameObject:
   m_ObjectHideFlags: 0
