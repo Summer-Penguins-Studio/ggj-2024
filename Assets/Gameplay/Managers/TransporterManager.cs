@@ -11,6 +11,7 @@ public class TransporterManager : MonoBehaviour
     [SerializeField] private Vector3 m_BasePlant;
     [SerializeField] private Vector3 m_1stFloor;
     [SerializeField] private Vector3 m_2ndFloor;
+    [SerializeField] private Vector3 m_SuersExit;
 
     [SerializeField] private VoidEventChannel m_CarHit;
 
@@ -58,6 +59,11 @@ public class TransporterManager : MonoBehaviour
     public void ToBasePlant()
     {
         StartCoroutine(Transport(m_BasePlant, Transition.BLACKOUT_IN, Transition.BLACKOUT_OUT));
+    }
+
+    public void ToSuersExit()
+    {
+        StartCoroutine(Transport(m_SuersExit, Transition.BLACKOUT_IN, Transition.BLACKOUT_OUT));
     }
 
     private IEnumerator Transport(Vector3 position, Transition initial, Transition final)
