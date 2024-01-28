@@ -6,14 +6,15 @@ TagManager:
   tags:
   - CinemachineTarget
   - Car
+  - ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Stone
   - Water
   - UI
-  - 
+  - Tunnel
   - 
   - 
   - 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour
 {
-    [SerializeField]GameObject m_gameObject;
+    [SerializeField] private GameObject player;
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position=m_gameObject.transform.position;
+        gameObject.transform.position = player.transform.position;
     }
 }
