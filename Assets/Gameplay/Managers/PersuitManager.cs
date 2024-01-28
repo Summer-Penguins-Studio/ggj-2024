@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PersuitManager : MonoBehaviour
 {
@@ -99,11 +100,15 @@ public class PersuitManager : MonoBehaviour
 
     private void persuit1stInterlude()
     {
+        m_Enemy.GetComponent<NavMeshAgent>().enabled = false;
         m_Enemy.transform.position = m_1stStagePosition;
+        m_Enemy.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     private void persuit2ndInterlude()
     {
+        m_Enemy.GetComponent<NavMeshAgent>().enabled = false;
         m_Enemy.transform.position = m_2ndStagePosition;
+        m_Enemy.GetComponent<NavMeshAgent>().enabled = true;
     }
 }
